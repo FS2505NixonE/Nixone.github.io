@@ -1,140 +1,59 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import logo from './assets/nixon-logo.svg'
 import ContactForm from './components/ContactForm'
 import MainLayout from './components/layout/MainLayout'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <MainLayout>
       <section id="home" className="portfolio-hero">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+        <div className="portfolio-hero__art" aria-hidden="true">
+          <div className="hero-orbit hero-orbit--one"></div>
+          <div className="hero-orbit hero-orbit--two"></div>
+          <img src={logo} alt="" />
         </div>
         <div className="portfolio-hero__copy">
           <p className="eyebrow">Full-stack developer</p>
-          <h1>Interfaces with a human pulse.</h1>
+          <h1>Building solutions.<br /><span>Elevating possibilities.</span></h1>
           <p>
-            I build clear, reliable web experiences with React, TypeScript, and
-            thoughtful product thinking.
+            I design and build thoughtful digital products where strong engineering
+            meets a clear, human experience.
           </p>
+          <a className="hero-cta" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
       </section>
 
-      <div className="ticks"></div>
+      <section className="value-strip" aria-label="Core values">
+        <div><strong>&lt;/&gt;</strong><span><b>Code</b>Passion for building<br />clean, efficient code.</span></div>
+        <div><strong>⌁</strong><span><b>Technology</b>Connected, adaptable,<br />problem solver.</span></div>
+        <div><strong>↗</strong><span><b>Growth</b>Always learning,<br />leveling up.</span></div>
+        <div><strong>♧</strong><span><b>Balance</b>Mental wellness,<br />purpose, peace.</span></div>
+        <div><strong>♕</strong><span><b>Leadership</b>Leading by example,<br />creating impact.</span></div>
+      </section>
 
       <section id="about" className="portfolio-section">
         <div className="section-heading">
           <p className="eyebrow">About</p>
-          <h2>Curious by default. Precise by practice.</h2>
+          <h2>Curious by default.<br />Precise by practice.</h2>
         </div>
-        <p>
-          I enjoy turning complicated requirements into approachable interfaces,
-          then backing them with dependable data and accessible interactions.
-        </p>
+        <div className="about-copy">
+          <p>I enjoy turning complicated requirements into approachable interfaces, then backing them with dependable data and accessible interactions.</p>
+          <div className="stat-row"><span><strong>01</strong><small>Curiosity</small></span><span><strong>02</strong><small>Craft</small></span><span><strong>03</strong><small>Impact</small></span></div>
+        </div>
       </section>
 
       <section id="projects" className="portfolio-section portfolio-section--projects">
         <div className="section-heading">
           <p className="eyebrow">Selected work</p>
-          <h2>Projects that make the details count.</h2>
+          <h2>Projects that make<br />the details count.</h2>
         </div>
-        <div id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
+        <div className="project-grid">
+          <article className="project-card project-card--elevator"><span className="project-number">01</span><p className="eyebrow">Full-stack platform</p><h3>Rocket Elevators</h3><p>A customer-facing platform connecting estimation, operations, and a polished digital experience.</p><div className="tag-row"><span>React</span><span>API</span><span>UX</span></div></article>
+          <article className="project-card project-card--food"><span className="project-number">02</span><p className="eyebrow">Product experience</p><h3>Rocket Food Delivery</h3><p>A responsive ordering journey designed around clarity, speed, and delightful interactions.</p><div className="tag-row"><span>TypeScript</span><span>Supabase</span><span>CSS</span></div></article>
+          <article className="project-card project-card--blog"><span className="project-number">03</span><p className="eyebrow">Content system</p><h3>CodeBloggs</h3><p>A focused publishing experience that makes technical ideas easier to discover and share.</p><div className="tag-row"><span>Web app</span><span>Data</span><span>Design</span></div></article>
         </div>
       </section>
 
-      <div className="ticks"></div>
       <ContactForm />
     </MainLayout>
   )
