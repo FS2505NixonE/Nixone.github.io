@@ -58,7 +58,7 @@ The application must read only the public frontend Supabase configuration from V
 
 ```text
 VITE_SUPABASE_URL=
-VITE_SUPABASE_PUBLISHABLE_KEY=
+VITE_SUPABASE_ANON_KEY=
 ```
 
 The exact key name may follow the installed Supabase client convention, but it must use the `VITE_` prefix consistently in source, `.env.example`, README, and CI configuration. `.env.example` must not contain working credentials. Local `.env` and `.env.*.local` files must be ignored by Git.
@@ -167,7 +167,7 @@ The workflow depends on:
 | Name | Source | Required | Exposure |
 | --- | --- | --- | --- |
 | `VITE_SUPABASE_URL` | Local ignored env file or GitHub Actions secret | Yes for Supabase-enabled builds | Browser-visible public configuration |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Local ignored env file or GitHub Actions secret | Yes for Supabase-enabled builds | Browser-visible public configuration |
+| `VITE_SUPABASE_ANON_KEY` | Local ignored env file or GitHub Actions secret | Yes for Supabase-enabled builds | Browser-visible public configuration |
 | Vite base path | Versioned Vite configuration | Yes | Public build behavior |
 | Node.js version | Workflow and project documentation | Yes | CI configuration |
 
