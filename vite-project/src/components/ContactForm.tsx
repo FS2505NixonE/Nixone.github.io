@@ -62,7 +62,7 @@ function ContactForm() {
   }
 
   return (
-    <section aria-labelledby="contact-heading">
+    <section id="contact" className="portfolio-section contact-section" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
       {!isSupabaseConfigured && (
         <p role="status">

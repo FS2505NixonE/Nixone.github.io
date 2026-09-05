@@ -3,23 +3,26 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import ContactForm from './components/ContactForm'
+import MainLayout from './components/layout/MainLayout'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <section id="center">
+    <MainLayout>
+      <section id="home" className="portfolio-hero">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
-        <div>
-          <h1>Get started</h1>
+        <div className="portfolio-hero__copy">
+          <p className="eyebrow">Full-stack developer</p>
+          <h1>Interfaces with a human pulse.</h1>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            I build clear, reliable web experiences with React, TypeScript, and
+            thoughtful product thinking.
           </p>
         </div>
         <button
@@ -33,7 +36,23 @@ function App() {
 
       <div className="ticks"></div>
 
-      <section id="next-steps">
+      <section id="about" className="portfolio-section">
+        <div className="section-heading">
+          <p className="eyebrow">About</p>
+          <h2>Curious by default. Precise by practice.</h2>
+        </div>
+        <p>
+          I enjoy turning complicated requirements into approachable interfaces,
+          then backing them with dependable data and accessible interactions.
+        </p>
+      </section>
+
+      <section id="projects" className="portfolio-section portfolio-section--projects">
+        <div className="section-heading">
+          <p className="eyebrow">Selected work</p>
+          <h2>Projects that make the details count.</h2>
+        </div>
+        <div id="next-steps">
         <div id="docs">
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#documentation-icon"></use>
@@ -112,12 +131,12 @@ function App() {
             </li>
           </ul>
         </div>
+        </div>
       </section>
 
       <div className="ticks"></div>
       <ContactForm />
-      <section id="spacer"></section>
-    </>
+    </MainLayout>
   )
 }
 
