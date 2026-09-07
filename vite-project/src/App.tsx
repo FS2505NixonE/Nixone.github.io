@@ -3,6 +3,131 @@ import ContactForm from './components/ContactForm'
 import MainLayout from './components/layout/MainLayout'
 import './App.css'
 
+// Newest first — the array order is the on-page order (reverse chronological).
+const education = [
+  {
+    school: 'University of Pheonix',
+    program: 'Bachelor of Science in Health Administration',
+    dates: '2026 – 2028',
+    detail: 'Focused on healthcare management, policy, and administration, providing a strong foundation for understanding the healthcare industry.',
+  },
+  {
+    school: 'Codeboxx',
+    program: 'Full-Stack Web Development Program',
+    dates: '2025 – 2026',
+    detail:
+      'Immersive, project-based training in JavaScript, React, REST APIs, SQL, and Git-based team workflows.',
+  },
+  {
+    school: 'Pinellas Technical College',
+    program: 'Medical Billing and Coding Program',
+    dates: '2018 – 2019',
+    detail: 'Trained in medical billing and coding principles, preparing for a career in the healthcare industry.',
+  },
+  {
+    school: 'Gibbs High School',
+    program: 'High School Diploma',
+    dates: '2009 – 2011',
+    detail: 'Completed coursework in mathematics, science, and English, developing strong foundational skills for higher education.',
+  },
+]
+
+// Newest first — the array order is the on-page order (reverse chronological).
+const experience = [
+  {
+    role: 'Medical Claims Representative / Processor',
+    org: 'CVS Health / Aetna Medicare',
+    dates: '2024 – Present',
+    summary:
+      'Review and process healthcare claims and prior-authorization-related information in a remote, computer-based environment.',
+    points: [
+      'Research claim details, enter and validate data, and maintain accuracy while meeting productivity, schedule, and deadline requirements.',
+      'Apply healthcare and insurance knowledge to resolve issues and support accurate, efficient member and provider outcomes.',
+    ],
+  },
+  {
+    role: 'Technical Advisor',
+    org: 'Kelly – Apple',
+    dates: '2023 – 2024',
+    summary:
+      'Supported clients with technical and service needs while maintaining positive relationships and clear communication.',
+    points: [
+      'Provided feedback and coaching to support team performance and professional growth.',
+      'Helped foster a positive, service-focused environment while resolving customer concerns.',
+    ],
+  },
+  {
+    role: 'Registrar I',
+    org: 'BayCare',
+    dates: '2021 – 2023',
+    summary:
+      'Managed patient registration data, updated records, confirmed insurance information, and responded to patient inquiries.',
+    points: [
+      'Reviewed and researched healthcare and insurance information and identified trends requiring follow-up or reporting.',
+      'Maintained accurate information across hospital systems while coordinating with patients and internal teams.',
+    ],
+  },
+  {
+    role: 'Floor Support',
+    org: 'Trulieve',
+    dates: '2020 – 2023',
+    summary:
+      'Resolved high-volume customer inquiries using active listening, critical thinking, and problem-solving.',
+    points: [
+      'Investigated billing and fraud-related concerns, processed account requests, and assisted with product and hardware/software issues.',
+    ],
+  },
+  {
+    role: 'Customer Service Representative',
+    org: 'TCS',
+    dates: '2018 – 2019',
+    summary:
+      'Resolved complex service requests and customer inquiries while documenting outcomes accurately.',
+    points: [
+      'Collaborated in a team-based environment and contributed to shared service and performance goals.',
+    ],
+  },
+]
+
+const projects = [
+  {
+    name: 'Rocket Elevators',
+    kind: 'Full-stack platform',
+    image: '/images/project-rocket-elevators.png',
+    alt: 'Screenshot of the Rocket Elevators management dashboard',
+    description:
+      'A full-stack management platform for a fictional elevator company: a public marketing site, a customer quote-request flow, and an internal dashboard for tracking buildings, elevators, and service requests. Built to practise designing one product end to end across the UI, a REST API, and a relational database.',
+    tags: ['React', 'REST API', 'MySQL', 'AsyncStorage', 'Expo'],
+  },
+  {
+    name: 'Rocket Elevators Admin App',
+    kind: 'CodeBoxx MERN application',
+    image: '/images/project-rocket-elevators-admin.png',
+    alt: 'Screenshot of the Rocket Elevators admin app screens',
+    description:
+      'Full-stack administrative platform for managing Rocket Elevators users, agents, transactions, records, and content.',
+    tags: ['React Native', 'Express API', 'MySQL', 'MongoDB', 'JWT', 'Mongoose'],
+  },
+  {
+    name: 'CodeBloggs',
+    kind: 'Social content app',
+    image: '/images/project-codebloggs.png',
+    alt: 'Screenshot of the CodeBloggs feed and profile pages',
+    description:
+      'A social blogging web app where people sign up, manage a profile, publish posts, and interact through a shared feed. Built to practise authentication, full CRUD, and document data modelling on the MERN stack.',
+    tags: ['React', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'Selenium'],
+  },
+   {
+    name: 'Rocket Food Delivery',
+    kind: 'Full-stack platform',
+    image: '/images/project-rocket-food.png',
+    alt: 'Mobile food-delivery platform connecting customers, restaurants, and couriers through restaurant browsing, ordering, order history, and delivery management.',
+    description:
+      'A full-stack management platform for a fictional food delivery company: a public marketing site, a customer quote-request flow, and an internal dashboard for tracking restaurants, orders, and deliveries. Built to practise designing one product end to end across the UI, a REST API, and a relational database.',
+    tags: ['React', 'REST API', 'MySQL', 'AsyncStorage', 'Expo', 'Spring Boot', 'Java'],
+  },
+]
+
 function App() {
   return (
     <MainLayout>
@@ -19,13 +144,24 @@ function App() {
             Building solutions. <span>Creating possibilities.</span>
           </p>
           <p>
-            I’m a Full-Stack Web Developer with a passion for turning ideas into 
-            functional, meaningful digital experiences. My journey into technology 
-            is about more than learning how to code—it's about challenging myself, 
-            creating new opportunities, and developing skills that allow me to 
-            build solutions that can make a real impact.
+            I’m a Full-Stack Web Developer with a passion for turning ideas into
+            functional, meaningful digital experiences.
           </p>
-          <a className="hero-cta" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+          <p>
+            <strong>I don't just want to write code. I want to build things that matter.</strong>
+          </p>
+          <div className="hero-actions">
+            <a className="hero-cta" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+            <a
+              className="hero-cta hero-cta--ghost"
+              href="/EOnna-Nixon-Resume.pdf"
+              download
+              target="_blank"
+              rel="noopener"
+            >
+              Download résumé <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -52,7 +188,10 @@ function App() {
             height={450}
             loading="lazy"
           />
-          <p>I enjoy taking something complicated, breaking it into manageable pieces, and figuring out how those pieces work together. Coding has strengthened that ability even more.</p>
+          <p>My background reaches beyond technology into healthcare, public administration, and customer service. That mix shapes how I build: I don't only ask whether something works, but who's using it, what problem it solves, and how the experience could be better.</p>
+          <p>My goal is to keep sharpening my technical skills while combining them with the professional experience and education I've built in those fields.</p>
+          <p>I'm particularly interested in the intersection of technology and healthcare, where better digital solutions can improve workflows, access to information, and people's overall experiences.</p>
+          <p>Long term, I want to build technology that connects people across healthcare, business, and everyday life, and to use what I'm learning to create opportunities, develop innovative solutions, build businesses, and eventually lead projects and teams of my own.</p>
           <div className="stat-row"><span><strong>01</strong><small>Curiosity</small></span><span><strong>02</strong><small>Craft</small></span><span><strong>03</strong><small>Impact</small></span></div>
         </div>
       </section>
@@ -99,7 +238,7 @@ function App() {
       <section id="strengths" className="portfolio-section portfolio-section--soft">
         <div className="section-heading">
           <p className="eyebrow">Soft skills &amp; talents</p>
-          <h2>How I work<br />with a team.</h2>
+          <h2>What I bring<br />to the Stack.</h2>
         </div>
         <div className="soft-skill-content">
           {/* AI-generated image (see Research.md): created with OpenAI DALL-E 3 via ChatGPT */}
@@ -108,7 +247,7 @@ function App() {
             src="/images/ai-workspace.png"
             alt="Illustration of a collaborative team workspace with people sketching on a whiteboard, sticky notes, and open laptops"
             width={960}
-            height={412}
+            height={540}
             loading="lazy"
           />
           <div className="skill-grid">
@@ -146,15 +285,75 @@ function App() {
         </div>
       </section>
 
+      <section id="experience" className="portfolio-section">
+        <div className="section-heading">
+          <p className="eyebrow">Work experience</p>
+          <h2>Where I've put<br />the work in.</h2>
+        </div>
+        <div className="timeline">
+          {experience.map((job) => (
+            <article className="timeline-item" key={`${job.role}-${job.org}`}>
+              <p className="timeline-item__dates">{job.dates}</p>
+              <h3>{job.role}</h3>
+              <p className="timeline-item__org">{job.org}</p>
+              <p>{job.summary}</p>
+              <ul>
+                {job.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="education" className="portfolio-section">
+        <div className="section-heading">
+          <p className="eyebrow">Education</p>
+          <h2>How I learned<br />to build.</h2>
+        </div>
+        <div className="timeline">
+          {education.map((entry) => (
+            <article className="timeline-item" key={`${entry.school}-${entry.program}`}>
+              <p className="timeline-item__dates">{entry.dates}</p>
+              <h3>{entry.school}</h3>
+              <p className="timeline-item__org">{entry.program}</p>
+              <p>{entry.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="projects" className="portfolio-section portfolio-section--projects">
         <div className="section-heading">
           <p className="eyebrow">Selected work</p>
           <h2>Projects that make<br />the details count.</h2>
         </div>
+        {/* Project screenshots live in public/images/ — replace the placeholder
+            project-*.png files with real captures (documented in Research.md). */}
         <div className="project-grid">
-          <article className="project-card project-card--elevator"><span className="project-number">01</span><p className="eyebrow">Full-stack platform</p><h3>Rocket Elevators</h3><p>A customer-facing platform connecting estimation, operations, and a polished digital experience.</p><div className="tag-row"><span>React</span><span>API</span><span>UX</span></div></article>
-          <article className="project-card project-card--food"><span className="project-number">02</span><p className="eyebrow">Product experience</p><h3>Rocket Food Delivery</h3><p>A responsive ordering journey designed around clarity, speed, and delightful interactions.</p><div className="tag-row"><span>TypeScript</span><span>Supabase</span><span>CSS</span></div></article>
-          <article className="project-card project-card--blog"><span className="project-number">03</span><p className="eyebrow">Content system</p><h3>CodeBloggs</h3><p>A focused publishing experience that makes technical ideas easier to discover and share.</p><div className="tag-row"><span>Web app</span><span>Data</span><span>Design</span></div></article>
+          {projects.map((project) => (
+            <article className="project-card" key={project.name}>
+              <img
+                className="project-card__media"
+                src={project.image}
+                alt={project.alt}
+                width={640}
+                height={480}
+                loading="lazy"
+              />
+              <div className="project-card__body">
+                <p className="eyebrow">{project.kind}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <div className="tag-row">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

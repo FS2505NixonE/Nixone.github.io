@@ -5,6 +5,8 @@ const navigationItems = [
   { label: 'About', href: '#about', icon: '◌' },
   { label: 'Skills', href: '#skills', icon: '◈' },
   { label: 'Strengths', href: '#strengths', icon: '✦' },
+  { label: 'Experience', href: '#experience', icon: '▦' },
+  { label: 'Education', href: '#education', icon: '❖' },
   { label: 'Projects', href: '#projects', icon: '◇' },
   { label: 'Contact', href: '#contact', icon: '@' },
 ]
@@ -16,11 +18,11 @@ function Header() {
         Skip to main content
       </a>
       <div className="site-header__inner">
-        <a className="site-brand" href="#home" aria-label="Nixon E. home">
+        <a className="site-brand" href="#home" aria-label="E'Onna Nixon home">
           <img
             className="site-brand__logo"
             src={logo}
-            alt="Nixon E. portfolio logo"
+            alt="E'Onna Nixon portfolio logo"
           />
           <span>
             E'Onna Nixon

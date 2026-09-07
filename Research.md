@@ -51,3 +51,21 @@ vite-project/public/images/ai-workspace.png
 
 Recommended export sizes: `ai-portrait.png` ≈ 1440×900, `ai-workspace.png` ≈
 1920×824. No code changes are needed after replacing the files.
+
+## Project screenshots (not AI-generated)
+
+The Projects section uses real screenshots of each project, **not** AI images.
+Each file maps to one entry in the `projects` array in `src/App.tsx`:
+
+| File | Project |
+| --- | --- |
+| `vite-project/public/images/project-rocket-elevators.png` | Rocket Elevators |
+| `vite-project/public/images/project-rocket-elevators-admin.png` | Rocket Elevators Admin App |
+| `vite-project/public/images/project-codebloggs.png` | CodeBloggs |
+| `vite-project/public/images/project-rocket-food.png` | Rocket Food Delivery |
+
+Displayed inside a 4:3 panel with `object-fit: contain` (the whole screenshot is
+shown, never cropped or stretched) on a soft-lavender mat. Any reasonably sized
+capture works; roughly landscape shots sit best. The `alt` text for each is set
+in `src/App.tsx` (`projects` array).
+
