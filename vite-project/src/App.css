@@ -441,10 +441,11 @@
 .portfolio-hero {
   position: relative;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
-  min-height: 680px;
+  min-height: 360px;
   place-items: center start;
+  align-content: start;
   gap: 44px;
-  padding: 86px 0 102px;
+  padding: 36px 0 56px;
   text-align: left;
 }
 
@@ -640,7 +641,7 @@
 }
 
 .portfolio-section {
-  padding: 124px 0;
+  padding: 64px 0;
   border-top-color: #eee8fb;
 }
 
@@ -738,6 +739,33 @@
   color: #615a77;
   font-size: 14px;
   line-height: 1.6;
+}
+
+/* Links section: the whole project-card is a single outbound anchor. */
+.link-card {
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 34px rgba(47, 18, 112, 0.16);
+}
+
+.link-card:focus-visible {
+  outline: 2px solid #7b3fe4;
+  outline-offset: 2px;
+}
+
+.link-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link-card h3 span {
+  color: #7b3fe4;
 }
 
 .tag-row {
@@ -1036,9 +1064,9 @@
 
   .portfolio-hero {
     grid-template-columns: 1fr;
-    min-height: 540px;
+    min-height: auto;
     gap: 24px;
-    padding: 52px 0 72px;
+    padding: 24px 0 40px;
     text-align: center;
   }
 
@@ -1058,7 +1086,7 @@
 
   .portfolio-section {
     display: block;
-    padding: 72px 0;
+    padding: 44px 0;
   }
 
   .value-strip {

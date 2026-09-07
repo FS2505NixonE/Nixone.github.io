@@ -69,3 +69,26 @@ shown, never cropped or stretched) on a soft-lavender mat. Any reasonably sized
 capture works; roughly landscape shots sit best. The `alt` text for each is set
 in `src/App.tsx` (`projects` array).
 
+## Link thumbnails (AI-generated)
+
+The Links section (`#links`) shows one card per outbound link, each with an
+AI-generated thumbnail. Same setup as the images above: 1×1 placeholder PNGs ship
+now so the build stays green; replace each in place, keeping the filename.
+
+- **Tool:** OpenAI DALL·E 3 (via ChatGPT). Update this and the prompts if a
+  different tool is used.
+- **Displayed at:** a 4:3 panel, `object-fit: contain` on a soft-lavender mat, so
+  any export size fits cleanly. ~1024×768 is plenty.
+- **Style to keep them a set:** flat modern vector icon, deep indigo and violet
+  with cyan accents, soft geometric background, generous white space — matching
+  the rest of the site.
+
+| File | Card | Prompt |
+| --- | --- | --- |
+| `vite-project/public/images/link-github.png` | GitHub | "Flat vector icon of a source-code repository / GitHub-style octocat silhouette, indigo and violet with cyan accents, soft geometric background, lots of white space. 4:3." |
+| `vite-project/public/images/link-linkedin.png` | LinkedIn | "Flat vector icon representing a professional networking profile card, indigo and violet with cyan accents, soft geometric background, lots of white space. 4:3." |
+| `vite-project/public/images/link-resume.png` | Résumé (PDF) | "Flat vector icon of a résumé / CV document with a download arrow, indigo and violet with cyan accents, soft geometric background, lots of white space. 4:3." |
+| `vite-project/public/images/link-email.png` | Email | "Flat vector icon of an email envelope with a subtle send motion, indigo and violet with cyan accents, soft geometric background, lots of white space. 4:3." |
+
+The `alt` text for each is set in `src/App.tsx` (`links` array).
+

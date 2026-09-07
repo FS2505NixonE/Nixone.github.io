@@ -128,6 +128,42 @@ const projects = [
   },
 ]
 
+// Thumbnails are AI-generated (see Research.md). Each card links out in a new tab.
+const links = [
+  {
+    title: 'GitHub',
+    url: 'https://github.com/FS2505NixonE',
+    image: '/images/link-github.png',
+    alt: 'Illustration representing a GitHub code repository profile',
+    description:
+      "Every project I've built lives here, including the source for this portfolio. Browse the repositories to see how each app is structured and how it grew commit by commit.",
+  },
+  {
+    title: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/eonna-nixon-266323170',
+    image: '/images/link-linkedin.png',
+    alt: 'Illustration representing a LinkedIn professional profile',
+    description:
+      'My professional background across healthcare operations, technical support, and customer service, plus my move into full-stack development. The best place to connect or see recommendations.',
+  },
+  {
+    title: 'Résumé (PDF)',
+    url: '/EOnna-Nixon-Resume.pdf',
+    image: '/images/link-resume.png',
+    alt: 'Illustration representing a downloadable résumé document',
+    description:
+      'A one-page summary of my experience, education, and skills. Opens in a new tab so you can read it inline or save a copy.',
+  },
+  {
+    title: 'Email',
+    url: 'mailto:eonnait25@gmail.com',
+    image: '/images/link-email.png',
+    alt: 'Illustration representing an email envelope',
+    description:
+      'The most direct way to reach me for roles, collaboration, or questions about any project shown here. I read and reply to everything.',
+  },
+]
+
 function App() {
   return (
     <MainLayout>
@@ -353,6 +389,40 @@ function App() {
                 </div>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="links" className="portfolio-section portfolio-section--projects">
+        <div className="section-heading">
+          <p className="eyebrow">Find me online</p>
+          <h2>Links &amp; profiles.</h2>
+        </div>
+        {/* Link thumbnails are AI-generated placeholders in public/images/ — see Research.md. */}
+        <div className="project-grid">
+          {links.map((link) => (
+            <a
+              className="project-card link-card"
+              key={link.title}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                className="project-card__media"
+                src={link.image}
+                alt={link.alt}
+                width={640}
+                height={480}
+                loading="lazy"
+              />
+              <div className="project-card__body">
+                <h3>
+                  {link.title} <span aria-hidden="true">↗</span>
+                </h3>
+                <p>{link.description}</p>
+              </div>
+            </a>
           ))}
         </div>
       </section>
