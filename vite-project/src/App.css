@@ -519,6 +519,19 @@
   color: #7c3aed;
 }
 
+.portfolio-hero__tagline {
+  margin: 0 0 18px;
+  color: #25105d;
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.portfolio-hero__tagline span {
+  color: #7c3aed;
+}
+
 .portfolio-hero__copy > p:last-of-type {
   max-width: 500px;
   margin: 0;
@@ -716,6 +729,76 @@
   font-size: 10px;
 }
 
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.skill-card {
+  padding: 26px 24px;
+  border: 1px solid #e6ddfa;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(47, 18, 112, 0.07);
+}
+
+.skill-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  color: #7b3fe4;
+  background: #f1ebfd;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.skill-card h3 {
+  margin: 0 0 8px;
+  color: #2b146d;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.skill-card p {
+  margin: 0;
+  color: #615a77;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.about-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 26px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: linear-gradient(140deg, #6328d4, #1766ba 60%, #16b8ca);
+  box-shadow: 0 16px 32px rgba(47, 18, 112, 0.14);
+}
+
+.soft-skill-content {
+  display: grid;
+  gap: 26px;
+}
+
+.soft-skill-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  border-radius: 14px;
+  object-fit: cover;
+  background: linear-gradient(135deg, #322070, #6328d4 55%, #16b8ca);
+  box-shadow: 0 16px 32px rgba(47, 18, 112, 0.14);
+}
+
 .contact-section {
   display: grid;
   grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
@@ -907,6 +990,10 @@
     grid-template-columns: 1fr;
   }
 
+  .skill-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .project-card {
     min-height: 260px;
   }
@@ -938,6 +1025,10 @@
   .value-strip > div {
     min-height: 92px;
     padding: 12px;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr;
   }
 
   .contact-section form {

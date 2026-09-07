@@ -3,6 +3,8 @@ import logo from '../../assets/nixon-logo.svg'
 const navigationItems = [
   { label: 'Home', href: '#home', icon: '⌂' },
   { label: 'About', href: '#about', icon: '◌' },
+  { label: 'Skills', href: '#skills', icon: '◈' },
+  { label: 'Strengths', href: '#strengths', icon: '✦' },
   { label: 'Projects', href: '#projects', icon: '◇' },
   { label: 'Contact', href: '#contact', icon: '@' },
 ]
@@ -21,8 +23,8 @@ function Header() {
             alt="Nixon E. portfolio logo"
           />
           <span>
-            Nixon E.
-            <small>Full-stack developer</small>
+            E'Onna Nixon
+            <small>Full-stack developer | Problem Solver | Purpose-Driven Creator</small>
           </span>
         </a>
         <nav aria-label="Main navigation">
