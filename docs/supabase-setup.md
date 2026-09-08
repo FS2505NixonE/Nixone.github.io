@@ -37,6 +37,8 @@ RLS is enforced in PostgreSQL. Hiding an admin button in React is not security b
 
 The frontend should sign in with the account, but it must never create that account or contain its password.
 
+The sign-in page is at `/login` and is not linked anywhere in the public site. See [`admin-access.md`](admin-access.md) for how to reach it (direct URL or the secret keyboard shortcut) and the `/backoffice` route it protects.
+
 ## 4. Configure local development
 
 From `vite-project/`:

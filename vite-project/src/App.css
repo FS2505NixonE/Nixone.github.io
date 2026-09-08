@@ -986,13 +986,16 @@
   font-size: 13px;
 }
 
-.contact-section form p.form-hint {
+.contact-section form p.form-hint,
+.admin-card p.form-hint {
   margin: 0 0 2px;
   color: #6f6689;
 }
 
 .contact-section form p.form-error,
-.contact-section form p.form-success {
+.contact-section form p.form-success,
+.admin-card p.form-error,
+.admin-card p.form-success {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1004,19 +1007,22 @@
   font-weight: 600;
 }
 
-.contact-section form p.form-error {
+.contact-section form p.form-error,
+.admin-card p.form-error {
   color: #8f1d16;
   background: #fdecea;
   border-color: #f3c1bc;
 }
 
-.contact-section form p.form-success {
+.contact-section form p.form-success,
+.admin-card p.form-success {
   color: #10633b;
   background: #e7f6ee;
   border-color: #b7e0c8;
 }
 
-.contact-section form .feedback-icon {
+.contact-section form .feedback-icon,
+.admin-card .feedback-icon {
   display: inline-grid;
   flex: 0 0 auto;
   place-items: center;
@@ -1028,7 +1034,8 @@
   line-height: 1;
 }
 
-.contact-section form p.form-error .feedback-icon {
+.contact-section form p.form-error .feedback-icon,
+.admin-card p.form-error .feedback-icon {
   background: #c0392b;
 }
 
@@ -1220,4 +1227,103 @@
   .contact-section form > p {
     grid-column: 1;
   }
+}
+
+/* Admin routes: /login and /backoffice (standalone, no public header/footer) */
+.admin-shell {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 48px 20px;
+  background:
+    radial-gradient(circle at 76% 12%, rgba(185, 239, 255, 0.32), transparent 23rem),
+    linear-gradient(180deg, #fff 0%, var(--bg) 42%, #fff 100%);
+}
+
+.route-status {
+  margin: 0 0 10px;
+  color: #615a77;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.admin-card {
+  width: min(400px, 100%);
+  padding: 32px;
+  border: 1px solid #e3dafa;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 48px rgba(68, 35, 132, 0.12);
+  text-align: left;
+}
+
+.admin-card .eyebrow {
+  margin-bottom: 4px;
+}
+
+.admin-card h1 {
+  margin: 0 0 18px;
+  color: #25105d;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.admin-card form {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-card label {
+  margin-top: 10px;
+  color: #392263;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #ded4f4;
+  border-radius: 7px;
+  color: var(--text-h);
+  background: #fcfbff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.admin-card input:focus {
+  outline: 2px solid #9c7bea;
+  outline-offset: 1px;
+}
+
+.admin-card input[aria-invalid='true'] {
+  border-color: #b3261e;
+  background: #fff7f6;
+}
+
+.admin-card input[aria-invalid='true']:focus {
+  outline-color: #b3261e;
+}
+
+.admin-card button {
+  margin-top: 18px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  background: #2b146d;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.admin-card p.form-error {
+  margin-top: 16px;
 }
