@@ -15,7 +15,7 @@ Never copy the secret/service-role key into this application. It bypasses RLS an
 
 1. Open **SQL Editor** in the Supabase dashboard.
 2. Run [`supabase/schema.sql`](../supabase/schema.sql).
-3. In **Table Editor**, confirm that `public.contact_messages` exists and that RLS is enabled.
+3. In **Table Editor**, confirm that `public.messages` exists and that RLS is enabled.
 
 The table stores `name`, `email`, `message`, and `created_at`. Database checks enforce the basic length limits even if a client bypasses the React form.
 
