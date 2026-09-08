@@ -17,7 +17,7 @@ export async function createContactMessage(
     return { ok: false, reason: 'not-configured' }
   }
 
-  const { error } = await supabase.from('contact_messages').insert(input)
+  const { error } = await supabase.from('messages').insert(input)
 
   return error ? { ok: false, reason: 'failed' } : { ok: true }
 }

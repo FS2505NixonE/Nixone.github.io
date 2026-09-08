@@ -269,8 +269,9 @@ Then verify in a browser:
 - With all fields filled but the name one character long, submitting shows the name error in an alert, outlines the name field in red, and moves focus to it; no network request is made (check the Network panel).
 - Entering `not-an-email` and submitting shows the email-format error on the email field.
 - Editing a field after an error clears the message and the red invalid outline.
-- A valid submission with Supabase configured clears the form and shows the success message; a row appears in `messages`.
-- Simulating an insert failure keeps the field values and shows the retry error.
+- A valid submission with Supabase configured clears all three fields and shows the success message in green with a check icon; exactly one row appears in the `messages` table (Supabase Table Editor) with the trimmed name, email, and message.
+- The success message disappears on its own after ~5 seconds, and also immediately if a field is edited before then.
+- Simulating an insert failure keeps the field values and shows the retry error in red with an X icon.
 - Running without `VITE_SUPABASE_*` variables renders the section with its notice and a disabled submit button, and does not crash the page.
 - Keyboard-tab through the controls: focus is visible, labels and the `*` requirement are conveyed, and the error is announced immediately on a failed submit.
 - At a 390px width the form fits with no horizontal overflow.

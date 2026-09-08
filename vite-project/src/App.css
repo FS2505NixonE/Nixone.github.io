@@ -986,6 +986,71 @@
   font-size: 13px;
 }
 
+.contact-section form p.form-hint {
+  margin: 0 0 2px;
+  color: #6f6689;
+}
+
+.contact-section form p.form-error,
+.contact-section form p.form-success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.contact-section form p.form-error {
+  color: #8f1d16;
+  background: #fdecea;
+  border-color: #f3c1bc;
+}
+
+.contact-section form p.form-success {
+  color: #10633b;
+  background: #e7f6ee;
+  border-color: #b7e0c8;
+}
+
+.contact-section form .feedback-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.contact-section form p.form-error .feedback-icon {
+  background: #c0392b;
+}
+
+.contact-section form p.form-success .feedback-icon {
+  background: #1a7f4b;
+}
+
+.contact-section form label span {
+  color: #b3261e;
+}
+
+.contact-section form input[aria-invalid='true'],
+.contact-section form textarea[aria-invalid='true'] {
+  border-color: #b3261e;
+  background: #fff7f6;
+}
+
+.contact-section form input[aria-invalid='true']:focus,
+.contact-section form textarea[aria-invalid='true']:focus {
+  outline-color: #b3261e;
+}
+
 @media (max-width: 768px) {
   .site-header__inner,
   .site-footer__inner,
