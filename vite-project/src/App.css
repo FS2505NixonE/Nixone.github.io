@@ -1327,3 +1327,216 @@
 .admin-card p.form-error {
   margin-top: 16px;
 }
+
+/* Back office: message table */
+.admin-shell--wide {
+  align-items: start;
+  padding-top: 40px;
+}
+
+.backoffice {
+  width: min(940px, 100%);
+  text-align: left;
+}
+
+.backoffice__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.backoffice__bar h1 {
+  margin: 2px 0 0;
+  color: #25105d;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.backoffice__account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #615a77;
+  font-size: 13px;
+}
+
+.backoffice__notice {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.backoffice__account button,
+.backoffice__notice button,
+.backoffice__actions button {
+  padding: 7px 13px;
+  border: 1px solid #ded4f4;
+  border-radius: 7px;
+  background: #fff;
+  color: #2b146d;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.backoffice__account button:disabled,
+.backoffice__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.backoffice__actions button.backoffice__delete {
+  border-color: #f0c9c4;
+  color: #b3261e;
+}
+
+.backoffice__table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e6ddfa;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.backoffice__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.backoffice__table th,
+.backoffice__table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #eee8fb;
+}
+
+.backoffice__table th {
+  color: #2b146d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.backoffice__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.backoffice__table a {
+  color: #6a4bd0;
+}
+
+.backoffice__actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.backoffice__row {
+  cursor: pointer;
+}
+
+.backoffice__row:hover td {
+  background: #faf8ff;
+}
+
+/* Full-message modal */
+.backoffice__dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(80vh, 640px);
+  padding: 0;
+  border: 1px solid #e3dafa;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--text-h);
+  box-shadow: 0 30px 60px rgba(20, 8, 60, 0.35);
+}
+
+.backoffice__dialog::backdrop {
+  background: rgba(20, 8, 60, 0.45);
+}
+
+.backoffice__dialog-body {
+  display: grid;
+  gap: 14px;
+  max-height: inherit;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.backoffice__dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.backoffice__dialog-head h2 {
+  margin: 0;
+  color: #25105d;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.backoffice__dialog-close {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #ded4f4;
+  border-radius: 8px;
+  background: #fff;
+  color: #2b146d;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.backoffice__dialog-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.backoffice__dialog-meta dt {
+  color: #8a82a0;
+  font-weight: 700;
+}
+
+.backoffice__dialog-meta dd {
+  margin: 0;
+  color: #3f3960;
+}
+
+.backoffice__dialog-meta a {
+  color: #6a4bd0;
+}
+
+.backoffice__dialog-message {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #eee8fb;
+  color: #3f3960;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.backoffice__dialog-dismiss {
+  justify-self: start;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 7px;
+  background: #2b146d;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
