@@ -2,6 +2,15 @@ import logo from '../assets/nixon-logo.svg'
 import ContactForm from '../components/ContactForm'
 import MainLayout from '../components/layout/MainLayout'
 
+// Files in public/ (images, the résumé PDF) are served under the deploy base
+// (import.meta.env.BASE_URL, e.g. "/Nixone.github.io/" on GitHub Pages). Vite
+// does NOT rewrite string paths in JSX, so prefix them here. External URLs
+// (https:, mailto:) are returned unchanged.
+const withBase = (path: string) =>
+  path.startsWith('/')
+    ? import.meta.env.BASE_URL.replace(/\/$/, '') + path
+    : path
+
 // Newest first — the array order is the on-page order (reverse chronological).
 const education = [
   {
@@ -189,7 +198,7 @@ function Home() {
             <a className="hero-cta" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
             <a
               className="hero-cta hero-cta--ghost"
-              href="/EOnna-Nixon-Resume.pdf"
+              href={withBase('/EOnna-Nixon-Resume.pdf')}
               download
               target="_blank"
               rel="noopener"
@@ -217,7 +226,7 @@ function Home() {
           {/* AI-generated image (see Research.md): created with OpenAI DALL-E 3 via ChatGPT */}
           <img
             className="about-portrait"
-            src="/images/ai-portrait.png"
+            src={withBase('/images/ai-portrait.png')}
             alt="Stylized digital portrait of a full-stack developer working at a desk with a laptop and dual monitors, rendered in indigo and violet tones"
             width={720}
             height={450}
@@ -279,7 +288,7 @@ function Home() {
           {/* AI-generated image (see Research.md): created with OpenAI DALL-E 3 via ChatGPT */}
           <img
             className="soft-skill-banner"
-            src="/images/ai-workspace.png"
+            src={withBase('/images/ai-workspace.png')}
             alt="Illustration of a collaborative team workspace with people sketching on a whiteboard, sticky notes, and open laptops"
             width={960}
             height={540}
@@ -371,7 +380,7 @@ function Home() {
             <article className="project-card" key={project.name}>
               <img
                 className="project-card__media"
-                src={project.image}
+                src={withBase(project.image)}
                 alt={project.alt}
                 width={640}
                 height={480}
@@ -403,13 +412,13 @@ function Home() {
             <a
               className="project-card link-card"
               key={link.title}
-              href={link.url}
+              href={withBase(link.url)}
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
                 className="project-card__media"
-                src={link.image}
+                src={withBase(link.image)}
                 alt={link.alt}
                 width={640}
                 height={480}

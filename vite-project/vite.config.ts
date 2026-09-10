@@ -23,5 +23,7 @@ function githubPagesSpaFallback(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), githubPagesSpaFallback()],
-  base: '/',
+  // GitHub Pages project site: served from https://<user>.github.io/Nixone.github.io/.
+  // Every built asset URL and the router basename derive from this.
+  base: '/Nixone.github.io/',
 })
