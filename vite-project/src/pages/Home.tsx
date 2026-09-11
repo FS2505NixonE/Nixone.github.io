@@ -1,4 +1,4 @@
-import logo from '../assets/nixon-logo.svg'
+import portrait from '../assets/portrait.jpg'
 import ContactForm from '../components/ContactForm'
 import MainLayout from '../components/layout/MainLayout'
 
@@ -176,10 +176,10 @@ function Home() {
   return (
     <MainLayout>
       <section id="home" className="portfolio-hero">
-        <div className="portfolio-hero__art" aria-hidden="true">
-          <div className="hero-orbit hero-orbit--one"></div>
-          <div className="hero-orbit hero-orbit--two"></div>
-          <img src={logo} alt="" />
+        <div className="portfolio-hero__art">
+          <div className="hero-orbit hero-orbit--one" aria-hidden="true"></div>
+          <div className="hero-orbit hero-orbit--two" aria-hidden="true"></div>
+          <img src={portrait} alt="E'Onna Nixon" />
         </div>
         <div className="portfolio-hero__copy">
           <p className="eyebrow">Full-stack developer</p>
@@ -232,11 +232,13 @@ function Home() {
             height={450}
             loading="lazy"
           />
-          <p>My background reaches beyond technology into healthcare, public administration, and customer service. That mix shapes how I build: I don't only ask whether something works, but who's using it, what problem it solves, and how the experience could be better.</p>
-          <p>My goal is to keep sharpening my technical skills while combining them with the professional experience and education I've built in those fields.</p>
-          <p>I'm particularly interested in the intersection of technology and healthcare, where better digital solutions can improve workflows, access to information, and people's overall experiences.</p>
-          <p>Long term, I want to build technology that connects people across healthcare, business, and everyday life, and to use what I'm learning to create opportunities, develop innovative solutions, build businesses, and eventually lead projects and teams of my own.</p>
-          <div className="stat-row"><span><strong>01</strong><small>Curiosity</small></span><span><strong>02</strong><small>Craft</small></span><span><strong>03</strong><small>Impact</small></span></div>
+          <div className="about-text">
+            <p>My background reaches beyond technology into healthcare, public administration, and customer service. That mix shapes how I build: I don't only ask whether something works, but who's using it, what problem it solves, and how the experience could be better.</p>
+            <p>My goal is to keep sharpening my technical skills while combining them with the professional experience and education I've built in those fields.</p>
+            <p>I'm particularly interested in the intersection of technology and healthcare, where better digital solutions can improve workflows, access to information, and people's overall experiences.</p>
+            <p>Long term, I want to build technology that connects people across healthcare, business, and everyday life, and to use what I'm learning to create opportunities, develop innovative solutions, build businesses, and eventually lead projects and teams of my own.</p>
+            <div className="stat-row"><span><strong>01</strong><small>Curiosity</small></span><span><strong>02</strong><small>Craft</small></span><span><strong>03</strong><small>Impact</small></span></div>
+          </div>
         </div>
       </section>
 

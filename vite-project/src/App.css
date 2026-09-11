@@ -470,7 +470,9 @@
 
 .portfolio-hero__art img {
   width: min(68%, 240px);
-  border-radius: 32px;
+  aspect-ratio: 1; /* guarantees a perfect circle even if the source photo changes */
+  object-fit: cover;
+  border-radius: 32px; 
   box-shadow: 0 24px 50px rgba(63, 28, 144, 0.22);
 }
 
@@ -650,11 +652,28 @@
   font-size: clamp(24px, 3vw, 34px);
 }
 
-.about-copy > p,
+.about-copy {
+  display: grid;
+  grid-template-columns: minmax(160px, 240px) 1fr; /* photo column | text column */
+  align-items: start;
+  gap: 28px;
+}
+
+.about-text {
+  display: grid;
+  gap: 0;
+}
+
+.about-text > p,
 .portfolio-section > p {
   color: #615a77;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.7;
+}
+
+
+#strengths .skill-card p {
+  font-size: 12px; 
 }
 
 .stat-row {
@@ -784,14 +803,37 @@
 }
 
 .timeline {
-  display: grid;
-  gap: 12px; 
+  display: flex; /* was a vertical grid; now a horizontal row */
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity; /* cards settle into view as you scroll */
+  padding-bottom: 10px; /* room for the scrollbar so it doesn't sit on the cards */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #c9b8f0 transparent;
+}
+
+.timeline::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: #c9b8f0;
+  border-radius: 8px;
 }
 
 .timeline-item {
   display: grid;
-  gap: 5px;
-  padding: 10px 14px; 
+  flex: 0 0 auto; /* don't shrink/grow — each card keeps its own width */
+  width: 230px; /* the "card size" lever: raise/lower to show fewer/more at once */
+  scroll-snap-align: start;
+  gap: 4px;
+  padding: 12px 14px;
   border: 1px solid #e6ddfa;
   border-left: 3px solid #7b3fe4;
   border-radius: 12px;
@@ -802,7 +844,7 @@
 .timeline-item__dates {
   margin: 0;
   color: #7b3fe4;
-  font-size: 11px; 
+  font-size: 10px; /* was 11px */
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -811,7 +853,7 @@
 .timeline-item h3 {
   margin: 0;
   color: #2b146d;
-  font-size: 16px; 
+  font-size: 14px; /* was 16px */
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -819,23 +861,23 @@
 .timeline-item__org {
   margin: 0;
   color: #6a4bd0;
-  font-size: 13px;
+  font-size: 12px; /* was 13px */
   font-weight: 600;
 }
 
 .timeline-item p {
   margin: 4px 0 0;
   color: #615a77;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12px; /* was 13px */
+  line-height: 1.55;
 }
 
 .timeline-item ul {
   margin: 8px 0 0;
-  padding-left: 18px;
+  padding-left: 16px;
   color: #615a77;
-  font-size: 13px; 
-  line-height: 1.6;
+  font-size: 12px; /* was 13px */
+  line-height: 1.55;
 }
 
 .timeline-item li {
@@ -880,16 +922,16 @@
 .skill-card p {
   margin: 0;
   color: #615a77;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
 .about-portrait {
   display: block;
-  width: 100%;
+  width: 100%; /* fills the .about-copy photo column (160-240px), set above */
   height: auto;
-  aspect-ratio: 16 / 10;
-  margin-bottom: 26px;
+  aspect-ratio: 4 / 5; /* portrait framing suits the narrower side-by-side column. Was 16/10. */
+  margin-bottom: 0; /* no longer stacked above the text, so no bottom gap needed */
   border-radius: 14px;
   object-fit: cover;
   background: linear-gradient(140deg, #6328d4, #1766ba 60%, #16b8ca);
@@ -904,6 +946,7 @@
 .soft-skill-banner {
   display: block;
   width: 100%;
+  max-width: 480px;
   height: auto;
   aspect-ratio: 16 / 9;
   border-radius: 14px;
@@ -1157,6 +1200,19 @@
   .portfolio-section {
     display: block;
     padding: 44px 0;
+  }
+
+  .about-copy {
+    grid-template-columns: 1fr; /* stack photo above text again on narrow screens */
+  }
+
+  .about-portrait {
+    max-width: 220px; /* keep the stacked photo from spanning full width */
+    margin: 0 auto 20px;
+  }
+
+  .timeline-item {
+    width: 200px; /* narrower cards so the next one visibly peeks in on phones */
   }
 
   .value-strip {
