@@ -495,8 +495,6 @@
 .portfolio-hero__copy {
   position: relative;
   z-index: 1;
-  /* Base text size for the hero. Anything without its own font-size
-     (the plain intro paragraph) inherits this. */
   font-size: 15px;
   line-height: 1.6;
 }
@@ -505,8 +503,6 @@
   max-width: 700px;
   margin: 12px 0 22px;
   color: #25105d;
-  /* clamp(min, preferred, max): grows with viewport width but never
-     smaller than 38px or larger than 58px. Was clamp(48px, 6.2vw, 82px). */
   font-size: clamp(38px, 5vw, 58px);
   font-weight: 750;
   letter-spacing: -0.045em;
@@ -654,7 +650,7 @@
 
 .about-copy {
   display: grid;
-  grid-template-columns: minmax(160px, 240px) 1fr; /* photo column | text column */
+  grid-template-columns: minmax(160px, 240px) 1fr;
   align-items: start;
   gap: 28px;
 }

@@ -25,7 +25,7 @@ function Header() {
             alt="E'Onna Nixon portfolio logo"
           />
           <span>
-            E'Onna Nixon
+            Nixon
             <small>Full-stack developer | Problem Solver | Purpose-Driven Creator</small>
           </span>
         </a>

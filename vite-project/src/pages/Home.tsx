@@ -40,7 +40,6 @@ const education = [
   },
 ]
 
-// Newest first — the array order is the on-page order (reverse chronological).
 const experience = [
   {
     role: 'Medical Claims Representative / Processor',
