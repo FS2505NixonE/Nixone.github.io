@@ -1,17 +1,3 @@
-/*
- * Theming (F-09): every color below is a token so the light/dark toggle only
- * has to change these definitions, never the components that use them.
- *
- * Resolution order (later wins):
- *   1. :root                                   -> light values (this block)
- *   2. :root:not([data-theme="light"]) + OS     -> dark values, only when the
- *      visitor has not made an explicit choice (no data-theme attribute yet)
- *      and their OS prefers dark. Updates live if the OS setting changes.
- *   3. :root[data-theme="dark"]                 -> dark values, pinned once
- *      the visitor has explicitly chosen a theme (persisted to localStorage
- *      by src/lib/theme.ts). This selector's specificity beats the media
- *      query above, so an explicit choice always overrides the OS setting.
- */
 :root {
   --text: #605b77;
   --text-h: #211052;

@@ -3,11 +3,6 @@ import { dictionaries } from '../i18n'
 import { resolveLocale, setStoredLocale, type Locale } from '../lib/i18n'
 import { LocaleContext } from './locale-context'
 
-/**
- * Mounted once at the app root (see App.tsx) so every route — including
- * /login and /backoffice — shares one resolved locale instead of each page
- * re-reading localStorage independently.
- */
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => resolveLocale())
 

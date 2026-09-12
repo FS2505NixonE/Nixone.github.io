@@ -5,7 +5,6 @@ import type { Locale } from '../lib/i18n'
 
 export type LocaleState = {
   locale: Locale
-  /** The active dictionary — `t.hero.ctaWork`, `t.contact.errors.fillAll`, etc. */
   t: Dictionary
   setLocale: (locale: Locale) => void
 }
