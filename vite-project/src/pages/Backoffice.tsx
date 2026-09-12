@@ -1,17 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
+import { useLocale } from '../context/locale-context'
 import { signOut } from '../lib/auth'
 import {
   type ContactMessage,
   deleteMessage,
   listMessages,
 } from '../lib/contactMessages'
+import type { Locale } from '../lib/i18n'
 
 type LoadState = 'loading' | 'ready' | 'error'
 
-function formatDateTime(iso: string): string {
-  return new Date(iso).toLocaleString(undefined, {
+const DATE_LOCALE_TAG: Record<Locale, string> = { en: 'en-US', fr: 'fr-FR' }
+
+function formatDateTime(iso: string, locale: Locale): string {
+  return new Date(iso).toLocaleString(DATE_LOCALE_TAG[locale], {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -27,6 +31,7 @@ function formatDateTime(iso: string): string {
 function Backoffice() {
   const navigate = useNavigate()
   const { session } = useAuth()
+  const { t, locale } = useLocale()
 
   const [loadState, setLoadState] = useState<LoadState>('loading')
   const [messages, setMessages] = useState<ContactMessage[]>([])
@@ -55,7 +60,10 @@ function Backoffice() {
   }
 
   useEffect(() => {
-    document.title = 'Back office'
+    document.title = t.admin.backoffice.documentTitle
+  }, [t])
+
+  useEffect(() => {
     // On-mount data fetch: the state updates happen only after the network
     // round-trip resolves (not synchronously), so the cascading-render concern
     // this rule guards against does not apply.
@@ -85,7 +93,7 @@ function Backoffice() {
   }, [])
 
   async function handleDelete(id: string) {
-    if (!window.confirm('Delete this message? This cannot be undone.')) return
+    if (!window.confirm(t.admin.backoffice.deleteConfirm)) return
     setDeletingId(id)
     setActionError(null)
     const result = await deleteMessage(id)
@@ -94,7 +102,7 @@ function Backoffice() {
       if (selectedId === id) setSelectedId(null)
       setMessages((current) => current.filter((message) => message.id !== id))
     } else {
-      setActionError('Could not delete that message. Please try again.')
+      setActionError(t.admin.backoffice.deleteFailed)
     }
   }
 
@@ -109,20 +117,22 @@ function Backoffice() {
       <section className="backoffice" aria-labelledby="backoffice-heading">
         <header className="backoffice__bar">
           <div>
-            <p className="eyebrow">Admin</p>
-            <h1 id="backoffice-heading">Messages</h1>
+            <p className="eyebrow">{t.admin.backoffice.eyebrow}</p>
+            <h1 id="backoffice-heading">{t.admin.backoffice.heading}</h1>
           </div>
           <div className="backoffice__account">
-            <span>{session?.user.email ?? 'Signed in'}</span>
+            <span>
+              {session?.user.email ?? t.admin.backoffice.signedInFallback}
+            </span>
             <button type="button" onClick={handleSignOut} disabled={isSigningOut}>
-              {isSigningOut ? 'Logging out…' : 'Log out'}
+              {isSigningOut ? t.admin.backoffice.loggingOut : t.admin.backoffice.logout}
             </button>
           </div>
         </header>
 
         {loadState === 'loading' && (
           <p className="route-status" role="status">
-            Loading messages…
+            {t.admin.backoffice.loading}
           </p>
         )}
 
@@ -132,16 +142,16 @@ function Backoffice() {
               <span className="feedback-icon" aria-hidden="true">
                 &#10005;
               </span>
-              Couldn’t load messages.
+              {t.admin.backoffice.loadError}
             </p>
             <button type="button" onClick={retry}>
-              Try again
+              {t.admin.backoffice.retry}
             </button>
           </div>
         )}
 
         {loadState === 'ready' && messages.length === 0 && (
-          <p className="route-status">No messages yet.</p>
+          <p className="route-status">{t.admin.backoffice.empty}</p>
         )}
 
         {loadState === 'ready' && messages.length > 0 && (
@@ -155,16 +165,19 @@ function Backoffice() {
               </p>
             )}
             <p className="route-status">
-              {messages.length} message{messages.length === 1 ? '' : 's'}
+              {messages.length}{' '}
+              {messages.length === 1
+                ? t.admin.backoffice.messageCountSingular
+                : t.admin.backoffice.messageCountPlural}
             </p>
             <div className="backoffice__table-wrap">
               <table className="backoffice__table">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">{t.admin.backoffice.table.name}</th>
+                    <th scope="col">{t.admin.backoffice.table.email}</th>
+                    <th scope="col">{t.admin.backoffice.table.date}</th>
+                    <th scope="col">{t.admin.backoffice.table.actions}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -185,7 +198,7 @@ function Backoffice() {
                       </td>
                       <td>
                         <time dateTime={message.created_at}>
-                          {formatDateTime(message.created_at)}
+                          {formatDateTime(message.created_at, locale)}
                         </time>
                       </td>
                       <td className="backoffice__actions">
@@ -196,7 +209,7 @@ function Backoffice() {
                             setSelectedId(message.id)
                           }}
                         >
-                          View
+                          {t.admin.backoffice.view}
                         </button>
                         <button
                           type="button"
@@ -207,7 +220,9 @@ function Backoffice() {
                           }}
                           disabled={deletingId === message.id}
                         >
-                          {deletingId === message.id ? 'Deleting…' : 'Delete'}
+                          {deletingId === message.id
+                            ? t.admin.backoffice.deleting
+                            : t.admin.backoffice.delete}
                         </button>
                       </td>
                     </tr>
@@ -229,27 +244,29 @@ function Backoffice() {
           {selected && (
             <div className="backoffice__dialog-body">
               <div className="backoffice__dialog-head">
-                <h2 id="message-dialog-title">Message from {selected.name}</h2>
+                <h2 id="message-dialog-title">
+                  {t.admin.backoffice.dialog.messageFromPrefix} {selected.name}
+                </h2>
                 <button
                   type="button"
                   className="backoffice__dialog-close"
                   onClick={() => setSelectedId(null)}
-                  aria-label="Close"
+                  aria-label={t.admin.backoffice.dialog.closeLabel}
                 >
                   &#10005;
                 </button>
               </div>
               <dl className="backoffice__dialog-meta">
-                <dt>Name</dt>
+                <dt>{t.admin.backoffice.dialog.nameLabel}</dt>
                 <dd>{selected.name}</dd>
-                <dt>Email</dt>
+                <dt>{t.admin.backoffice.dialog.emailLabel}</dt>
                 <dd>
                   <a href={`mailto:${selected.email}`}>{selected.email}</a>
                 </dd>
-                <dt>Received</dt>
+                <dt>{t.admin.backoffice.dialog.receivedLabel}</dt>
                 <dd>
                   <time dateTime={selected.created_at}>
-                    {formatDateTime(selected.created_at)}
+                    {formatDateTime(selected.created_at, locale)}
                   </time>
                 </dd>
               </dl>
@@ -259,7 +276,7 @@ function Backoffice() {
                 className="backoffice__dialog-dismiss"
                 onClick={() => setSelectedId(null)}
               >
-                Close
+                {t.admin.backoffice.dialog.closeButton}
               </button>
             </div>
           )}

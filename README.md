@@ -15,7 +15,10 @@ Built as the Module 16 capstone project at Codeboxx.
 This project is the public professional website of E'Onna Nixon, a full-stack
 web developer. Visitors can read about her background, technical and soft skills,
 work experience, education, and selected projects, download her résumé, and send
-her a message through a contact form.
+her a message through a contact form. The site supports a light and a dark theme
+and reads in either English or French — both preferences are remembered in the
+visitor's browser via `localStorage` and default to the visitor's OS/browser
+settings on first visit.
 
 Behind a hidden, password-protected route there is an **admin area**. When E'Onna
 signs in, she can see every message that has been submitted through the site and
@@ -39,7 +42,8 @@ instead of relying on a third-party form service or email alone.
 | Frontend framework | React 19 |
 | Build tool / dev server | Vite 8 |
 | Routing | React Router 7 (`BrowserRouter`) |
-| Styling | Plain CSS (no framework) |
+| Styling | Plain CSS (no framework), with CSS custom properties driving a light/dark theme |
+| Localization | Custom React context + JSON dictionaries (English/French), persisted in `localStorage` |
 | Backend & database | Supabase — hosted PostgreSQL + auto-generated REST API (PostgREST). There is **no custom server**. |
 | Authentication | Supabase Auth (email + password, one admin account) |
 | Security | PostgreSQL Row Level Security (RLS) |

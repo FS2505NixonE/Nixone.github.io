@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useLocale } from '../context/locale-context'
 import { createContactMessage } from '../lib/contactMessages'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -17,6 +18,7 @@ const initialForm = {
 type FieldName = 'name' | 'email' | 'message'
 
 function ContactForm() {
+  const { t } = useLocale()
   const [form, setForm] = useState(initialForm)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
@@ -69,23 +71,23 @@ function ContactForm() {
     if (!name || !email || !message) {
       fail(
         !name ? 'name' : !email ? 'email' : 'message',
-        'Please fill in all fields.',
+        t.contact.errors.fillAll,
       )
       return
     }
 
     if (name.length < 2) {
-      fail('name', 'Please enter your name (at least 2 characters).')
+      fail('name', t.contact.errors.nameLength)
       return
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      fail('email', 'Please enter a valid email address.')
+      fail('email', t.contact.errors.emailInvalid)
       return
     }
 
     if (message.length < 10) {
-      fail('message', 'Your message must be at least 10 characters.')
+      fail('message', t.contact.errors.messageLength)
       return
     }
 
@@ -95,14 +97,14 @@ function ContactForm() {
 
     if (result.ok) {
       setForm(initialForm)
-      setSuccess('Thanks. Your message has been sent.')
+      setSuccess(t.contact.success)
       return
     }
 
     setError(
       result.reason === 'not-configured'
-        ? 'Contact storage is not configured yet. Please use the email link instead.'
-        : 'Your message could not be sent. Please try again later.',
+        ? t.contact.errors.notConfigured
+        : t.contact.errors.failed,
     )
   }
 
@@ -112,18 +114,15 @@ function ContactForm() {
       className="portfolio-section contact-section"
       aria-labelledby="contact-heading"
     >
-      <h2 id="contact-heading">Contact</h2>
+      <h2 id="contact-heading">{t.contact.heading}</h2>
       {!isSupabaseConfigured && (
-        <p role="status">
-          Supabase is not configured for this environment. The form is disabled until
-          the local or deployment variables are provided.
-        </p>
+        <p role="status">{t.contact.notConfigured}</p>
       )}
       <form onSubmit={handleSubmit} noValidate>
-        <p className="form-hint">All fields are required.</p>
+        <p className="form-hint">{t.contact.hint}</p>
 
         <label htmlFor="contact-name">
-          Name <span aria-hidden="true">*</span>
+          {t.contact.nameLabel} <span aria-hidden="true">*</span>
         </label>
         <input
           id="contact-name"
@@ -141,7 +140,7 @@ function ContactForm() {
         />
 
         <label htmlFor="contact-email">
-          Email <span aria-hidden="true">*</span>
+          {t.contact.emailLabel} <span aria-hidden="true">*</span>
         </label>
         <input
           id="contact-email"
@@ -159,7 +158,7 @@ function ContactForm() {
         />
 
         <label htmlFor="contact-message">
-          Message <span aria-hidden="true">*</span>
+          {t.contact.messageLabel} <span aria-hidden="true">*</span>
         </label>
         <textarea
           id="contact-message"
@@ -179,7 +178,7 @@ function ContactForm() {
           type="submit"
           disabled={isSubmitting || !isSupabaseConfigured || isIncomplete}
         >
-          {isSubmitting ? 'Sending...' : 'Send message'}
+          {isSubmitting ? t.contact.submitting : t.contact.submit}
         </button>
 
         {error && (

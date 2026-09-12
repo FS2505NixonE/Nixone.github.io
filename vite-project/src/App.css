@@ -1630,3 +1630,46 @@
     bottom: 84px; /* clears the fixed mobile bottom nav bar */
   }
 }
+
+/* Language switcher (F-10): sits beside the theme toggle, same fixed
+   placement and visual treatment, mounted once at the app root. */
+.language-switcher {
+  position: fixed;
+  right: 68px;
+  bottom: 16px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.language-switcher:hover,
+.language-switcher:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.language-switcher:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .language-switcher {
+    right: 68px;
+    bottom: 84px; /* clears the fixed mobile bottom nav bar */
+  }
+}

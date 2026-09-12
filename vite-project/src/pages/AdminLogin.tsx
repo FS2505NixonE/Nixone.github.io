@@ -7,6 +7,7 @@ import {
 } from 'react'
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
+import { useLocale } from '../context/locale-context'
 import { signIn } from '../lib/auth'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -20,6 +21,7 @@ function safeRedirect(raw: string | null): string {
 
 function AdminLogin() {
   const { status } = useAuth()
+  const { t } = useLocale()
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const target = safeRedirect(params.get('redirect'))
@@ -36,11 +38,11 @@ function AdminLogin() {
 
   useEffect(() => {
     const previous = document.title
-    document.title = 'Admin sign in'
+    document.title = t.admin.login.documentTitle
     return () => {
       document.title = previous
     }
-  }, [])
+  }, [t])
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
@@ -65,11 +67,11 @@ function AdminLogin() {
     const { password } = form
 
     if (!email || !password) {
-      fail(!email ? 'email' : 'password', 'Please enter your email and password.')
+      fail(!email ? 'email' : 'password', t.admin.login.errors.fillAll)
       return
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      fail('email', 'Please enter a valid email address.')
+      fail('email', t.admin.login.errors.emailInvalid)
       return
     }
 
@@ -84,11 +86,11 @@ function AdminLogin() {
 
     setForm((current) => ({ ...current, password: '' }))
     if (result.reason === 'invalid') {
-      setError('Invalid login credentials')
+      setError(t.admin.login.errors.invalidCredentials)
     } else if (result.reason === 'unavailable') {
-      setError('Authentication is not available in this environment.')
+      setError(t.admin.login.errors.unavailable)
     } else {
-      setError('Could not sign in right now. Please try again.')
+      setError(t.admin.login.errors.failed)
     }
   }
 
@@ -96,7 +98,7 @@ function AdminLogin() {
     return (
       <main id="main-content" className="admin-shell">
         <p className="route-status" role="status">
-          Checking your session…
+          {t.admin.login.checkingSession}
         </p>
       </main>
     )
@@ -109,17 +111,17 @@ function AdminLogin() {
   return (
     <main id="main-content" className="admin-shell">
       <section className="admin-card" aria-labelledby="login-heading">
-        <p className="eyebrow">Restricted</p>
-        <h1 id="login-heading">Admin sign in</h1>
+        <p className="eyebrow">{t.admin.login.eyebrow}</p>
+        <h1 id="login-heading">{t.admin.login.heading}</h1>
 
         {!isSupabaseConfigured && (
           <p className="form-hint" role="status">
-            Authentication is not configured for this environment.
+            {t.admin.login.notConfigured}
           </p>
         )}
 
         <form onSubmit={handleSubmit} noValidate>
-          <label htmlFor="login-email">Email</label>
+          <label htmlFor="login-email">{t.admin.login.emailLabel}</label>
           <input
             id="login-email"
             name="email"
@@ -135,7 +137,7 @@ function AdminLogin() {
             }
           />
 
-          <label htmlFor="login-password">Password</label>
+          <label htmlFor="login-password">{t.admin.login.passwordLabel}</label>
           <input
             id="login-password"
             name="password"
@@ -155,7 +157,7 @@ function AdminLogin() {
             type="submit"
             disabled={isSubmitting || !isSupabaseConfigured || isIncomplete}
           >
-            {isSubmitting ? 'Signing in…' : 'Sign in'}
+            {isSubmitting ? t.admin.login.submitting : t.admin.login.submit}
           </button>
 
           {error && (
