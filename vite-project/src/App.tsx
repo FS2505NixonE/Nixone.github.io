@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import AdminShortcut from './components/AdminShortcut'
 import RequireAuth from './components/RequireAuth'
+import ThemeToggle from './components/ThemeToggle'
 import { AuthProvider } from './context/AuthProvider'
 import AdminLogin from './pages/AdminLogin'
 import Backoffice from './pages/Backoffice'
@@ -11,6 +12,7 @@ function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthProvider>
+        <ThemeToggle />
         <AdminShortcut />
         <Routes>
           <Route path="/" element={<Home />} />

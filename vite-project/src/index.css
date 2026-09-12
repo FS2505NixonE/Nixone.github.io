@@ -1,15 +1,50 @@
+/*
+ * Theming (F-09): every color below is a token so the light/dark toggle only
+ * has to change these definitions, never the components that use them.
+ *
+ * Resolution order (later wins):
+ *   1. :root                                   -> light values (this block)
+ *   2. :root:not([data-theme="light"]) + OS     -> dark values, only when the
+ *      visitor has not made an explicit choice (no data-theme attribute yet)
+ *      and their OS prefers dark. Updates live if the OS setting changes.
+ *   3. :root[data-theme="dark"]                 -> dark values, pinned once
+ *      the visitor has explicitly chosen a theme (persisted to localStorage
+ *      by src/lib/theme.ts). This selector's specificity beats the media
+ *      query above, so an explicit choice always overrides the OS setting.
+ */
 :root {
   --text: #605b77;
   --text-h: #211052;
+  --text-soft: #8a82a0;
   --bg: #fbfaff;
+  --surface: #ffffff;
+  --surface-tint: #f4f0fd;
+  --panel-translucent: rgba(247, 244, 255, 0.86);
   --border: #e5def5;
   --code-bg: #f1ecff;
   --accent: #6734d4;
   --accent-bg: rgba(103, 52, 212, 0.1);
   --accent-border: rgba(103, 52, 212, 0.5);
+  --accent-strong: #2b146d;
+  --accent-ring: #9c7bea;
+  --accent-cyan: #8be7f2;
+  --on-accent: #ffffff;
   --social-bg: #f4f0ff;
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --danger: #b3261e;
+  --danger-text: #8f1d16;
+  --danger-icon: #c0392b;
+  --danger-bg: #fdecea;
+  --danger-border: #f3c1bc;
+  --success-text: #10633b;
+  --success-icon: #1a7f4b;
+  --success-bg: #e7f6ee;
+  --success-border: #b7e0c8;
+  --footer-bg: #211052;
+  --footer-text: #d8d5df;
+  --footer-muted: #aaa5b5;
+  --header-bg: rgba(255, 255, 255, 0.88);
 
   --sans: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
   --heading: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
@@ -27,6 +62,109 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --text: #b9b2cf;
+    --text-h: #f1edfb;
+    --text-soft: #8f87a8;
+    --bg: #14101f;
+    --surface: #1c1730;
+    --surface-tint: #241d3d;
+    --panel-translucent: rgba(28, 23, 48, 0.7);
+    --border: #2f2749;
+    --code-bg: #241d3d;
+    --accent: #a78bfa;
+    --accent-bg: rgba(167, 139, 250, 0.16);
+    --accent-border: rgba(167, 139, 250, 0.45);
+    --accent-strong: #6d3fd8;
+    --accent-ring: #b39ef2;
+    --accent-cyan: #8be7f2;
+    --on-accent: #ffffff;
+    --social-bg: #241d3d;
+    --shadow:
+      rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.35) 0 4px 6px -2px;
+    --danger: #ff6b6b;
+    --danger-text: #ffb4b4;
+    --danger-icon: #e5484d;
+    --danger-bg: rgba(229, 72, 77, 0.14);
+    --danger-border: rgba(229, 72, 77, 0.4);
+    --success-text: #7ee2b8;
+    --success-icon: #2fae76;
+    --success-bg: rgba(47, 174, 118, 0.14);
+    --success-border: rgba(47, 174, 118, 0.4);
+    --footer-bg: #0d0a17;
+    --footer-text: #cdc7de;
+    --footer-muted: #8f87a8;
+    --header-bg: rgba(20, 16, 31, 0.85);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --text: #b9b2cf;
+  --text-h: #f1edfb;
+  --text-soft: #8f87a8;
+  --bg: #14101f;
+  --surface: #1c1730;
+  --surface-tint: #241d3d;
+    --panel-translucent: rgba(28, 23, 48, 0.7);
+  --border: #2f2749;
+  --code-bg: #241d3d;
+  --accent: #a78bfa;
+  --accent-bg: rgba(167, 139, 250, 0.16);
+  --accent-border: rgba(167, 139, 250, 0.45);
+  --accent-strong: #6d3fd8;
+  --accent-ring: #b39ef2;
+  --accent-cyan: #8be7f2;
+  --on-accent: #ffffff;
+  --social-bg: #241d3d;
+  --shadow:
+    rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.35) 0 4px 6px -2px;
+  --danger: #ff6b6b;
+  --danger-text: #ffb4b4;
+  --danger-icon: #e5484d;
+  --danger-bg: rgba(229, 72, 77, 0.14);
+  --danger-border: rgba(229, 72, 77, 0.4);
+  --success-text: #7ee2b8;
+  --success-icon: #2fae76;
+  --success-bg: rgba(47, 174, 118, 0.14);
+  --success-border: rgba(47, 174, 118, 0.4);
+  --footer-bg: #0d0a17;
+  --footer-text: #cdc7de;
+  --footer-muted: #8f87a8;
+  --header-bg: rgba(20, 16, 31, 0.85);
+}
+
+/* Smooth theme switch (REQ-THEME-007): only color-ish properties transition,
+   never layout, so toggling never causes a visible reflow/jank. */
+body,
+.site-header,
+.site-footer,
+.portfolio-hero,
+.portfolio-section,
+.value-strip,
+.skill-card,
+.timeline-item,
+.project-card,
+.contact-section form,
+.admin-card,
+.backoffice,
+.backoffice__table,
+.backoffice__dialog {
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.001ms !important;
   }
 }
 
